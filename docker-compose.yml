@@ -1,0 +1,26 @@
+version: '2'
+services:
+	mongo:
+		image: mongo:3.2
+		volumes:
+		 - ./data/db:/data/db
+		 - ./data/dump:/dump
+		restart: always
+		command: mongod --smallfiles
+
+	rocketchat:
+		image: rocketchat/rocket.chat:latest
+		volumes:
+		  - ./uploads:/app/uploads
+		environment:
+		  - PORT=3000
+		  - ROOT_URL=http://chat.pojo.pl:8080
+		  - MONGO_URL=mongodb://mongo:27017/rocketchat
+		depends_on:
+			- mongo
+		ports:
+		  - 8080:3000
+		restart: always
+
+
+	
