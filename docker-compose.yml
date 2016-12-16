@@ -1,21 +1,6 @@
 version: '2'
 services:
 
-  nginx:
-    container_name: nginx
-    image: nginx
-    volumes:
-      - ./nginx:/etc/nginx
-    environment:
-      - NGINX_PORT=80
-    ports:
-      - 80:80
-    links:
-      - mongo
-      - rocketchat
-      - jenkins
-    restart: always
-
   mongo:
     container_name: mongo
     image: mongo:3.2
@@ -43,4 +28,19 @@ services:
     image: jenkins
     volumes:
       - ./jenkins:/var/jenkins_home:z
+    restart: always
+
+  nginx:
+    container_name: nginx
+    image: nginx
+    volumes:
+      - ./nginx:/etc/nginx
+    environment:
+      - NGINX_PORT=80
+    ports:
+      - 80:80
+    links:
+      - mongo
+      - rocketchat
+      - jenkins
     restart: always
