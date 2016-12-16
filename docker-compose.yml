@@ -19,6 +19,8 @@ services:
       - PORT=3000
       - ROOT_URL=http://chat.pojo.pl:80
       - MONGO_URL=mongodb://mongo:27017/rocketchat
+    ports:
+      - 3000:3000
     depends_on:
       - mongo    
     restart: always
@@ -26,6 +28,8 @@ services:
   jenkins:
     container_name: jenkins
     image: jenkins
+    ports:
+      - 8080:8080
     volumes:
       - ./jenkins:/var/jenkins_home:z
     restart: always
