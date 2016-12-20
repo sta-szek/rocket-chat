@@ -27,7 +27,7 @@ services:
 
   jenkins:
     container_name: jenkins
-    image: jenkins
+    image: jenkinsci/jenkins:latest
     ports:
       - 8080:8080
     volumes:
