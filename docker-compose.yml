@@ -35,6 +35,8 @@ services:
     volumes:
       - ./jenkins:/var/jenkins_home:z
     restart: always
+    mem_limit: 1024m
+    memswap_limit: 1024m
 
   nginx:
     container_name: nginx
