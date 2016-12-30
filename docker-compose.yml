@@ -34,6 +34,8 @@ services:
       - 8080:8080
     volumes:
       - ./jenkins:/var/jenkins_home:z
+    environment:
+      - "JAVA_OPTS=-Xmx256m"
     restart: always
     mem_limit: 1024m
     memswap_limit: 1024m
