@@ -27,6 +27,7 @@ services:
 
   jenkins:
     container_name: jenkins
+    image: pojo-jenkins:latest
     build:
       context: .
       dockerfile: Dockerfile-jenkins-node
@@ -37,8 +38,8 @@ services:
     environment:
       - "JAVA_OPTS=-Xmx256m"
     restart: always
-    mem_limit: 1024m
-    memswap_limit: 1024m
+    mem_limit: 1536m
+    memswap_limit: 1536m
 
   nginx:
     container_name: nginx
