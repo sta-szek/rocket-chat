@@ -39,7 +39,7 @@ services:
       - "JAVA_OPTS=-Xmx256m"
     restart: always
     mem_limit: 1536m
-    memswap_limit: 1536m
+    memswap_limit: 2048m
 
   nginx:
     container_name: nginx
