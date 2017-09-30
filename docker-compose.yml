@@ -3,6 +3,7 @@ version: '2'
 services:
   rocketchat:
     image: rocketchat/rocket.chat:latest
+    container_name: rocketchat
     restart: unless-stopped
     volumes:
       - ./uploads:/app/uploads
@@ -18,6 +19,7 @@ services:
 
   mongo:
     image: mongo:3.2
+    container_name: mongo
     restart: unless-stopped
     volumes:
      - ./data/db:/data/db
@@ -27,6 +29,7 @@ services:
   # it will run the command and remove himself (it will not stay running)
   mongo-init-replica:
     image: mongo:3.2
+    container_name: mongo-init-replica
     command: 'mongo mongo/rocketchat --eval "rs.initiate({ _id: ''rs0'', members: [ { _id: 0, host: ''localhost:27017'' } ]})"'
     depends_on:
       - mongo
@@ -34,6 +37,7 @@ services:
   # hubot, the popular chatbot (add the bot user first and change the password before starting this image)
   hubot:
     image: rocketchat/hubot-rocketchat:latest
+    container_name: hubot
     restart: unless-stopped
     environment:
       - ROCKETCHAT_URL=rocketchat:80
